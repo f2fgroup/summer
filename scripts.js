@@ -10,7 +10,7 @@
 
 "use strict";
 	
-function SummerHtmlImageMapCreator() {
+function SummerHtmlImageMapCreator(body) {
 	
 	/* Utilities */
 	var utils = {
@@ -36,7 +36,7 @@ function SummerHtmlImageMapCreator() {
 			return str.replace(/^\s+|\s+$/g, '');
 		},
 		id : function (str) {
-			return document.getElementById(str);
+			return body.find('#' + str)[0];
 		},
 		hide : function(node) {
 			node.style.display = 'none';
@@ -144,8 +144,7 @@ function SummerHtmlImageMapCreator() {
 	
 	/* Main object */
 	var app = (function() {
-		var body = document.getElementsByTagName('body')[0],
-			wrapper = utils.id('wrapper'),
+		var wrapper = utils.id('wrapper'),
 			svg = utils.id('svg'),
 			img = utils.id('img'),
 			img_src = null,
@@ -2295,5 +2294,3 @@ function SummerHtmlImageMapCreator() {
 	};
 	
 };
-
-document.addEventListener("DOMContentLoaded", SummerHtmlImageMapCreator, false);
