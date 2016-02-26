@@ -7,65 +7,22 @@
  *
  * Thu May 15 2013 15:15:27 GMT+0400
  */
-
-html, body, div, span, applet, object, h1, h2, h3, h4, h5, h6, p, a, em, img, strong, ol, ul, li, dl, dd, dt, form, label, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video  {
-    margin: 0;
+.summer {
     padding: 0;
-    border: 0;
-    outline: 0;
-    font-style: inherit;
-    font-size: 100%;
-    font-family: inherit;
-    vertical-align: baseline;
-    background: transparent;
-}
-:focus {
-    outline: 0;
-}
-ul, ol {
-    list-style: none;
-}
-html {
+    margin: 0;
+    background: #FFF url(data:image/gif;base64,R0lGODlhCgAKAIABANzc3P///yH+EUNyZWF0ZWQgd2l0aCBHSU1QACwAAAAACgAKAAACEYQdmYcaDNxjEspKndVZbc8UADs=);
+    line-height: 1;
     height: 100%;
-}
-body {
-    padding: 0;
-    margin: 0;
     font-family: Arial, Tahoma, sans-serif;
     font-size: 14px;
     color: #000;
-    height: 100%;
-    min-height: 100%;
-    background: #FFF url(data:image/gif;base64,R0lGODlhCgAKAIABANzc3P///yH+EUNyZWF0ZWQgd2l0aCBHSU1QACwAAAAACgAKAAACEYQdmYcaDNxjEspKndVZbc8UADs=);
-    line-height: 1;
+    overflow: auto;
 }
-img {
-    border: 0;
-}
-a:link, a:visited {
-    outline: none;
-    text-decoration: none;
+
+.summer input {
     color: #000;
 }
-.clear {
-    clear: both;
-}
-.clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-#noscript {
-    text-align: center;
-    display: block;
-    font-size: 20px;
-    padding: 5px 0;
-    background: #F00;
-}
-#header {
+.summer #header {
     background: #000;
     padding: 5px 0;
     position: fixed;
@@ -73,7 +30,7 @@ a:link, a:visited {
     width: 100%;
     box-shadow: rgba(0,0,0,0.2) 0 0 2px 2px;
 }
-#logo {
+.summer #logo {
     margin-right: 10px;
     margin-left: 10px;
     margin-top: -4px;
@@ -81,24 +38,24 @@ a:link, a:visited {
     display: inline-block;
     vertical-align: top;
 }
-#logo a:link, #logo a:visited {
+.summer #logo a:link, .summer #logo a:visited {
     color: #32c832;
 }
-#logo a:hover {
+.summer #logo a:hover {
     color: #FFF;
 }
-#logo img {
+.summer #logo img {
     display: block;
 }
-#nav, #nav ul {
+.summer #nav, .summer #nav ul {
     display: inline;
     vertical-align: middle;
 }
-#nav li {
+.summer #nav li {
     margin-right: 5px;
     display: inline;
 }
-#nav a:link, #nav a:visited {
+.summer #nav a:link, .summer #nav a:visited {
     border: 1px solid #FFF;
     border-radius: 3px;
     font-size: 10px;
@@ -106,24 +63,24 @@ a:link, a:visited {
     display: inline-block;
     color: #FFF;
 }
-#nav a:hover, #nav a:active {
+.summer #nav a:hover, .summer #nav a:active {
     border: 1px solid #32c832;
     color: #32c832;
 }
-#nav a:active, #nav .selected a {
+.summer #nav a:active, .summer #nav .selected a {
     background: #FFF;
     color: #000;
     box-shadow: 0 0 1px #222 inset;
     border: 1px solid #FFF;
 }
-#coords {
+.summer #coords {
     position: absolute;
     top: 10px;
     right: 15px;
     color: #FFF;
     font-size: 11px;
 }
-#debug {
+.summer #debug {
     color: #EEE;
     position: absolute;
     top: 10px;
@@ -131,14 +88,14 @@ a:link, a:visited {
     z-index: 1001;
     font-size: 11px;
 }
-#wrapper {
+.summer #wrapper {
     position: relative;
     display: none;
 }
-#image_wrapper {
+.summer #image_wrapper {
     padding: 45px 0 10px;
 }
-#image {
+.summer #image {
     position: relative;
     overflow: hidden;
     display: block;
@@ -146,10 +103,10 @@ a:link, a:visited {
     border-radius: 3px;
     box-shadow: rgba(0,0,0,0.2) 0 0 2px 2px;
 }
-.draw#image {
+.summer .draw#image {
     cursor: crosshair;
 }
-#image map {
+.summer #image map {
     position: absolute;
     top: 0;
     left: 0;
@@ -157,11 +114,11 @@ a:link, a:visited {
     height: 100%;
     display: block;
 }
-#img {
+.summer #img {
     position: relative;
     z-index: 1;
 }
-#code {
+.summer #code {
     background: rgba(0,0,0,0.9);
     color: #FFF;
     font-family: monospace;
@@ -177,10 +134,10 @@ a:link, a:visited {
     display: none;
     border-radius: 3px;
 }
-#code_content {
+.summer #code_content {
     padding: 10px;
 }
-.close_button {
+.summer .close_button {
     width: 10px;
     height: 10px;
     display: block;
@@ -192,7 +149,7 @@ a:link, a:visited {
     border-radius: 1px;
     cursor: pointer;
 }
-#about {
+.summer #about {
     position: absolute;
     top: 10px;
     left: 0;
@@ -207,10 +164,10 @@ a:link, a:visited {
     box-sizing: border-box;
     color: #000;
 }
-#get_image_wrapper {
+.summer #get_image_wrapper {
     padding: 35px 0;
 }
-#get_image {
+.summer #get_image {
     width: 200px;
     margin: 0 auto;
     font-size: 16px;
@@ -221,10 +178,10 @@ a:link, a:visited {
     box-shadow: rgba(0,0,0,0.2) 0 0 2px 2px;
     position: relative;
 }
-#logo_get_image {
+.summer #logo_get_image {
     margin-bottom: 20px;
 }
-#loading {
+.summer #loading {
     position: absolute;
     top: 0;
     left: 0;
@@ -237,20 +194,20 @@ a:link, a:visited {
     border-radius: 5px;
     line-height: 3;
 }
-#get_image b {
+.summer #get_image b {
     display: block;
     font-size: 25px;
     margin: 10px 0;
 }
-#get_image label {
+.summer #get_image label {
     display: block;
     margin-bottom: 5px;
 }
-#button {
+.summer #button {
     margin-top: 20px;
     font-size: 21px;
 }
-#dropzone {
+.summer #dropzone {
     border: 2px dashed #999;
     width: 200px;
     height: 200px;
@@ -260,10 +217,10 @@ a:link, a:visited {
     line-height: 200px;
     position: relative;
 }
-.error#dropzone {
+.summer .error#dropzone {
     border: 2px dashed #F00;
 }
-.clear_button {
+.summer .clear_button {
     display: block;
     height: 16px;
     width: 16px;
@@ -277,16 +234,16 @@ a:link, a:visited {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAD1QAAA9UBZ3cOpgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAG4SURBVDiNrZOxattQFIa/c5UMtsBbIbMRQZ7iyFC/QjEesqoPYPAUsnQoaAp472RI92jJEGjaNwjFpY68RWQIXQoudocKVEPj29shuo6Fm9JCv/Gi7+ic/54rxhjWaX5o7jo/nedAC6EFgGEMjLXSp5Onk5v178UWEESCUXAIDIAKv2cBvLxqX70y3ItijEEQ2R/tXwjSeUQsYTDvknbSNRijAIJRcChIp+E2iOoRXtXbkLyqR1SPaLgNBOkU3SJ7o71dxzgToBLVIw6eHJAtM/ppnzRPAfBdn6E/pLZV43x2zvHtMcBCi26qIrAKQDyNyZYZta0aQ3+I7/olOVtmxNPYNlVxcEIJ3gdvELr2dF3IdQ6A67gbXRVhXKjVVRWkeUo/7ZPrHNdxcR2XXOebMoDQUn+T+p9QxZKssCPYP9tObCYlDGMFDwW8qlcKrHfdo3fdKwVbumLFR6WVPuV+wwh3wpVsZ7aZ2CLhTmj1hUbHzvT19OvJ55MceDb7MUOJYvBpwM33h5Wf3825/HbJttrm7MsZ87s5wIuknbz9P6tsMCZpJ13gyI7zCAvgyMqw9hot//qcfwEDGehh48P3mQAAAABJRU5ErkJggg==);
     z-index: 2;
 }
-#dropzone img {
+.summer #dropzone img {
     max-width: 100%;
     max-height: 100%;
     vertical-align: middle;
 }
-#url_wrapper {
+.summer #url_wrapper {
     position: relative;
     display: block;
 }
-#url {
+.summer #url {
     border: 2px solid #999;
     border-radius: 3px;
     background: #FFF;
@@ -297,10 +254,10 @@ a:link, a:visited {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-.error#url {
+.summer .error#url {
     border: 2px solid #F00;
 }
-#edit_details {
+.summer #edit_details {
     position: absolute;
     top: 100px;
     left: 100px;
@@ -313,23 +270,23 @@ a:link, a:visited {
     color: #FFF;
     font-size: 0px;
 }
-#edit_details h5 {
+.summer #edit_details h5 {
     margin-bottom: 10px;
     font-size: 14px;
     cursor: move;
 }
-.changed#edit_details h5, p.changed label {
+.summer .changed#edit_details h5, .summer p.changed label {
     color: #32c832;
 }
-#edit_details p {
+.summer #edit_details p {
     margin-bottom: 10px;
 }
-#edit_details label {
+.summer #edit_details label {
     font-size: 11px;
     display: block;
     margin-bottom: 2px;
 }
-#edit_details input[type=text] {
+.summer #edit_details input[type=text] {
     background: #FFF;
     font-size: 12px;
     font-family: sans-serif;
@@ -338,10 +295,10 @@ a:link, a:visited {
     border-radius: 5px;
     box-shadow: rgba(0,0,0,0.5) 0 1px 2px inset;
 }
-.changed#edit_details button {
+.summer .changed#edit_details button {
     box-shadow: rgba(50,200,50,1) 0 0 1px 2px;
 }
-#help {
+.summer #help {
     display: none;
     width: 400px;
     border-radius: 3px;
@@ -353,35 +310,35 @@ a:link, a:visited {
     z-index: 1003;
     box-shadow: rgba(0,0,0,0.2) 0 0 2px 2px;
 }
-#help .txt {
+.summer #help .txt {
     padding: 20px 20px 5px;
     line-height: 1.4;
 }
-.txt p {
+.summer .txt p {
     margin-bottom: 3px;
 }
-#help section {
+.summer #help section {
     margin-bottom: 20px;
 }
-#help .close_button {
+.summer #help .close_button {
     background: #000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAACbgAAAm4Bt/774AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABKSURBVAiZdc2xDYAwAAPBA0ViiQxKR6hgCMZjCSpTEAkavnxL7yHJgRPNQ0MtXS6Y+jBjlUSSLS9bEqMfSm/O2D+pq6Bi/ZxfqDfkbiIp0Zzd1AAAAABJRU5ErkJggg==) 50% 50% no-repeat;
     box-shadow: 0 0 1px #EEE inset;
     border-radius: 2px;
 }
-#help h2 {
+.summer #help h2 {
     margin-bottom: 5px;
 }
-#help footer {
+.summer #help footer {
     color: #999;
     font-size: 10px;
     padding: 0 20px 20px;
     line-height: 1.3;
 }
-#help footer a {
+.summer #help footer a {
     color: #777;
     text-decoration: underline;
 }
-.key {
+.summer .key {
     background: #F5F5F5;
     color: #555;
     text-shadow: 0 0 1px #EEE;
@@ -397,11 +354,11 @@ a:link, a:visited {
     cursor: default;
     vertical-align: middle;
 }
-.key:active {
+.summer .key:active {
     padding: 2px 5px 0;
     box-shadow: 1px 1px 0 rgba(0,0,0,0.08) inset, -1px -1px 0 rgba(255,255,255,1) inset;
 }
-#overlay {
+.summer #overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -412,7 +369,7 @@ a:link, a:visited {
     opacity: 0.5;
     display: none;
 }
-#from_html_wrapper {
+.summer #from_html_wrapper {
     display: none;
     width: 500px;
     border-radius: 5px;
@@ -424,22 +381,22 @@ a:link, a:visited {
     z-index: 1002;
     color: #FFF;
 }
-#from_html_wrapper .close_button {
+.summer #from_html_wrapper .close_button {
     background: #000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAACbgAAAm4Bt/774AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABKSURBVAiZdc2xDYAwAAPBA0ViiQxKR6hgCMZjCSpTEAkavnxL7yHJgRPNQ0MtXS6Y+jBjlUSSLS9bEqMfSm/O2D+pq6Bi/ZxfqDfkbiIp0Zzd1AAAAABJRU5ErkJggg==) 50% 50% no-repeat;
     box-shadow: 0 0 1px #EEE inset;
     border-radius: 2px;
 }
-#from_html_form {
+.summer #from_html_form {
     padding: 20px;
 }
-#from_html_form h5 {
+.summer #from_html_form h5 {
     margin-bottom: 15px;
 }
-#from_html_form label {
+.summer #from_html_form label {
     display: block;
     font-size: 12px;
 }
-#from_html_form textarea {
+.summer #from_html_form textarea {
     border: 0px;
     border-radius: 3px;
     background: #FFF;
@@ -458,87 +415,87 @@ a:link, a:visited {
 
 /* CSS for SVG-elements */
 
-#svg {
+.summer #svg {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
     display: inline-block;
 }
-#svg rect {
+.summer #svg rect {
     stroke-width: 3px;
     stroke: #F00;
     fill: rgba(255,255,255,0.3);
 }
-#svg rect.with_href {
+.summer #svg rect.with_href {
     fill: rgba(0,0,0,0.3);
 }
-.edit > #svg rect:hover {
+.summer .edit > #svg rect:hover {
     fill: rgba(50,200,50,0.3);
 }
-#svg rect.active {
+.summer #svg rect.active {
     fill: rgba(0,0,0,0.5);
 }
-#svg circle {
+.summer #svg circle {
     stroke-width: 3px;
     stroke: #0F0;
     fill: rgba(255,255,255,0.3);
 }
-#svg circle.with_href {
+.summer #svg circle.with_href {
     fill: rgba(0,0,0,0.3);
 }
-.edit > #svg circle:hover {
+.summer .edit > #svg circle:hover {
     fill: rgba(50,200,50,0.3);
 }
-#svg polyline, #svg polygon {
+.summer #svg polyline, .summer #svg polygon {
     stroke-width: 3px;
     stroke: #00F;
     fill: rgba(255,255,255,0.3);
 }
-#svg polygon.with_href {
+.summer #svg polygon.with_href {
     fill: rgba(0,0,0,0.3);
 }
-.edit > #svg polygon:hover {
+.summer .edit > #svg polygon:hover {
     fill: rgba(50,200,50,0.3);
 }
-#svg .selected {
+.summer #svg .selected {
     fill: rgba(50,200,50,0.5) !important;
 }
-#svg rect.helper {
+.summer #svg rect.helper {
     fill: #FFF;
     stroke: #000;
     stroke-width: 2px;
 }
-#svg rect.helper:hover {
+.summer #svg rect.helper:hover {
     fill: #F00; 
 }
-.edit > #svg rect, .edit > #svg circle, .edit > #svg polygon {
+.summer .edit > #svg rect, .summer .edit > #svg circle, .summer .edit > #svg polygon {
     cursor: move;
 }
-.edit > #svg .pointer {
+.summer .edit > #svg .pointer {
     cursor: pointer;
 }
-.edit > #svg .e-resize {
+.summer .edit > #svg .e-resize {
     cursor: e-resize;
 }
-.edit > #svg .ne-resize {
+.summer .edit > #svg .ne-resize {
     cursor: ne-resize;
 }
-.edit > #svg .nw-resize {
+.summer .edit > #svg .nw-resize {
     cursor: nw-resize;
 }
-.edit > #svg .n-resize {
+.summer .edit > #svg .n-resize {
     cursor: n-resize;
 }
-.edit > #svg .se-resize {
+.summer .edit > #svg .se-resize {
     cursor: se-resize;
 }
-.edit > #svg .sw-resize {
+.summer .edit > #svg .sw-resize {
     cursor: sw-resize;
 }
-.edit > #svg .s-resize {
+.summer .edit > #svg .s-resize {
     cursor: s-resize;
 }
-.edit > #svg .w-resize {
+.summer .edit > #svg .w-resize {
     cursor: w-resize;
 }

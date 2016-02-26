@@ -16,15 +16,15 @@ function SummerHtmlImageMapCreator(body) {
 	var utils = {
 		offsetX : function(node) {
 			var box = node.getBoundingClientRect(),
-				scroll = window.pageXOffset;
-				
-			return Math.round(box.left + scroll);
+				scroll = body.scrollLeft(),
+				offset = body.offset();
+			return Math.round(box.left); // + scroll);
 		},
-		offsetY : function(node) { 
+		offsetY : function(node) {
 			var box = node.getBoundingClientRect(),
-				scroll = window.pageYOffset;
-				
-			return Math.round(box.top + scroll);
+				scroll =  body.scrollTop(),
+				offset = body.offset();
+			return Math.round(box.top); // + scroll);
 		},
 		rightX : function(x) {
 			return x-app.getOffset('x');
@@ -182,6 +182,7 @@ function SummerHtmlImageMapCreator(body) {
 		
 		/* Get offset value */
 		window.addEventListener('resize', recalcOffsetValues, false);
+		body.scroll(recalcOffsetValues);
 		
 		/* Disable selection */
 		container.addEventListener('mousedown', function(e) { e.preventDefault(); }, false);
@@ -415,29 +416,15 @@ function SummerHtmlImageMapCreator(body) {
 		
 		/* Returned object */
 		return {
-			saveInLocalStorage : function() {
-				var obj = {
-					areas : [],
-					img : img_src
-				};
-
+			getObjects: function() {
+				var areas = [];
 				utils.foreach(objects, function(x) {
-					obj.areas.push(x.toJSON());
+					areas.push(x.toJSON());
 				});
-				
-				window.localStorage.setItem('SummerHTMLImageMapCreator', JSON.stringify(obj));
-			
-				alert('Saved');
-			
-				return this;
+				return areas;
 			},
-			loadFromLocalStorage : function() {
-				var str = window.localStorage.getItem('SummerHTMLImageMapCreator'),
-					obj = JSON.parse(str),
-					areas = obj.areas;
-				
-				this.loadImage(obj.img);
-				
+			setObjects: function(areas) {
+				this.clear();
 				utils.foreach(areas, function(x) {
 					switch (x.type) {
 						case 'rect':
@@ -474,7 +461,26 @@ function SummerHtmlImageMapCreator(body) {
 							break;
 					}
 				});
-					
+			},
+			saveInLocalStorage : function() {
+				var obj = {
+					areas : this.getObjects(),
+					img : img_src
+				};
+
+				window.localStorage.setItem('SummerHTMLImageMapCreator', JSON.stringify(obj));
+			
+				alert('Saved');
+			
+				return this;
+			},
+			loadFromLocalStorage : function() {
+				var str = window.localStorage.getItem('SummerHTMLImageMapCreator'),
+					obj = JSON.parse(str);
+				
+				this.loadImage(obj.img);
+				this.setObjects(obj.areas);
+				
 				return this;
 			},
 			hide : function() {
@@ -497,12 +503,12 @@ function SummerHtmlImageMapCreator(body) {
 				return this;
 			},
 			loadImage : function(url) {
-				get_image.showLoadIndicator();
+				if (get_image) get_image.showLoadIndicator();
 				img.src = url;
 				img_src = url;
 				
 				img.onload = function() {
-					get_image.hideLoadIndicator().hide();
+					if (get_image) get_image.hideLoadIndicator().hide();
 					app.show()
 					   .setDimensions(img.width, img.height)
 					   .recalcOffsetValues();
@@ -741,13 +747,13 @@ function SummerHtmlImageMapCreator(body) {
 		
 		function save(e) {
 			obj.href = href_attr.value;
-			obj.alt = alt_attr.value;
+			obj.alt = alt_attr && alt_attr.value;
 			obj.title = title_attr.value;
 			
 			obj.href ? obj.with_href() : obj.without_href();
 			
 			changedReset();
-				
+			unload();
 			e.preventDefault();
 		};
 		
@@ -782,11 +788,11 @@ function SummerHtmlImageMapCreator(body) {
 		save_button.addEventListener('click', save, false);
 		
 		href_attr.addEventListener('keydown', function(e) { e.stopPropagation(); }, false);
-		alt_attr.addEventListener('keydown', function(e) { e.stopPropagation(); }, false);
+		alt_attr && alt_attr.addEventListener('keydown', function(e) { e.stopPropagation(); }, false);
 		title_attr.addEventListener('keydown', function(e) { e.stopPropagation(); }, false);
 		
 		href_attr.addEventListener('change', change, false);
-		alt_attr.addEventListener('change', change, false);
+		alt_attr && alt_attr.addEventListener('change', change, false);
 		title_attr.addEventListener('change', change, false);
 		
 		close_button.addEventListener('click', unload, false);
@@ -805,7 +811,7 @@ function SummerHtmlImageMapCreator(body) {
 			load : function(object, new_x, new_y) {
 				obj = object;
 				href_attr.value = object.href ? object.href : '';
-				alt_attr.value = object.alt ? object.alt : '';
+				alt_attr && (alt_attr.value = object.alt ? object.alt : '');
 				title_attr.value = object.title ? object.title : '';
 				utils.show(form);
 				if (new_x && new_y) {
@@ -949,15 +955,16 @@ function SummerHtmlImageMapCreator(body) {
 
 	/* Get image form */
 	var get_image = (function() {
-		var block = utils.id('get_image_wrapper'),
-			loading_indicator = utils.id('loading'),
+		var block = utils.id('get_image_wrapper');
+		if (!block) return false;
+		var loading_indicator = utils.id('loading'),
 			button = utils.id('button'),
 			filename = null,
 			last_changed = null;
 			
 		// Drag'n'drop - the first way to loading an image
 		var drag_n_drop = (function() {
-			var dropzone = utils.id('dropzone'),
+			var dropzone = utils.id('dropzone'), 
 				dropzone_clear_button = dropzone.querySelector('.clear_button'),
 				sm_img = utils.id('sm_img');
 			
@@ -1297,7 +1304,7 @@ function SummerHtmlImageMapCreator(body) {
 				   .hide()
 				   .hidePreview();
 				deselectAll();
-				get_image.show();
+				if (get_image) get_image.show();
 			} 
 			
 			e.preventDefault();
@@ -1309,18 +1316,18 @@ function SummerHtmlImageMapCreator(body) {
 			e.preventDefault();
 		}
 		
-		save.addEventListener('click', onSaveButtonClick, false);
-		load.addEventListener('click', onLoadButtonClick, false);
-		rectangle.addEventListener('click', onShapeButtonClick, false);
-		circle.addEventListener('click', onShapeButtonClick, false);
-		polygon.addEventListener('click', onShapeButtonClick, false);
-		clear.addEventListener('click', onClearButtonClick, false);
-		from_html.addEventListener('click', onFromHtmlButtonClick, false);
-		to_html.addEventListener('click', onToHtmlButtonClick, false);
-		preview.addEventListener('click', onPreviewButtonClick, false);
-		edit.addEventListener('click', onEditButtonClick, false);
-		new_image.addEventListener('click', onNewImageButtonClick, false);
-		show_help.addEventListener('click', onShowHelpButtonClick, false);
+		save && save.addEventListener('click', onSaveButtonClick, false);
+		load && load.addEventListener('click', onLoadButtonClick, false);
+		rectangle && rectangle.addEventListener('click', onShapeButtonClick, false);
+		circle && circle.addEventListener('click', onShapeButtonClick, false);
+		polygon && polygon.addEventListener('click', onShapeButtonClick, false);
+		clear && clear.addEventListener('click', onClearButtonClick, false);
+		from_html && from_html.addEventListener('click', onFromHtmlButtonClick, false);
+		to_html && to_html.addEventListener('click', onToHtmlButtonClick, false);
+		preview && preview.addEventListener('click', onPreviewButtonClick, false);
+		edit && edit.addEventListener('click', onEditButtonClick, false);
+		new_image && new_image.addEventListener('click', onNewImageButtonClick, false);
+		show_help && show_help.addEventListener('click', onShowHelpButtonClick, false);
 	})();
 
 
@@ -2293,4 +2300,6 @@ function SummerHtmlImageMapCreator(body) {
 		}
 	};
 	
+	
+	return app;
 };
