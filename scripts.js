@@ -1382,14 +1382,14 @@ function SummerHtmlImageMapCreator(body) {
 	};
 
 	/* Rectangle constructor */
-	var Rect = function (x, y){
+	var Rect = function (x, y, x1, y1){
 		app.setIsDraw(true);
 
 		this.params = {
 			x : x, //distance from the left edge of the image to the left side of the rectangle
 			y : y, //distance from the top edge of the image to the top side of the rectangle
-			width : 0, //width of rectangle
-			height : 0 //height of rectangle
+			width : x1 ? x1 : 0, //width of rectangle
+			height : y1 ? y1 : 0 //height of rectangle
 		};
 		
 		this.href = ''; //href attribute - not required
@@ -1713,11 +1713,14 @@ function SummerHtmlImageMapCreator(body) {
 	};
 	
 	Rect.createFromSaved = function(params) {
+		for(var i = 0; i < params.coords.length; i++) {
+			params.coords[i] = parseInt(params.coords[i]);
+		}
 		var coords = params.coords,
 			href = params.href,
 			alt = params.alt,
 			title = params.title,
-			area = new Rect(coords[0], coords[1]);
+			area = new Rect(coords[0], coords[1], coords[2] - coords[0], coords[3] - coords[1]);
 		
 		area.setParams(area.dynamicDraw(coords[2], coords[3])).deselect();
 		
@@ -1754,13 +1757,13 @@ function SummerHtmlImageMapCreator(body) {
 
 
 	/* Circle constructor */
-	var Circle = function (x, y){
+	var Circle = function (x, y, r){
 		app.setIsDraw(true);
 
 		this.params = {
 			cx : x, //distance from the left edge of the image to the center of the circle
 			cy : y, //distance from the top edge of the image to the center of the circle
-			radius : 0 //radius of the circle
+			radius : r || 0 //radius of the circle
 		};
 		
 		this.href = ''; //href attribute - not required
@@ -1969,11 +1972,14 @@ function SummerHtmlImageMapCreator(body) {
 	};
 
 	Circle.createFromSaved = function(params) {
+		for(var i = 0; i < params.coords.length; i++) {
+			params.coords[i] = parseInt(params.coords[i]);
+		}
 		var coords = params.coords,
 			href = params.href,
 			alt = params.alt,
 			title = params.title,
-			area = new Circle(coords[0], coords[1]);
+			area = new Circle(coords[0], coords[1], coords[2]);
 		
 		area.setParams(area.dynamicDraw(coords[0], coords[1] + coords[2])).deselect();
 
@@ -2258,6 +2264,9 @@ function SummerHtmlImageMapCreator(body) {
 	};
 	
 	Polygon.createFromSaved = function(params) {
+		for(var i = 0; i < params.coords.length; i++) {
+			params.coords[i] = parseInt(params.coords[i]);
+		}
 		var coords = params.coords,
 			href = params.href,
 			alt = params.alt,
